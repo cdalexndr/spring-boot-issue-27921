@@ -1,0 +1,30 @@
+plugins {
+    id 'org.springframework.boot' version '2.4.11'
+}
+apply plugin: 'java'
+apply plugin: 'io.spring.dependency-management'
+
+repositories {
+    mavenCentral()
+}
+
+tasks.named('wrapper') {
+    gradleVersion = '6.5.1'
+}
+
+dependencies {
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
+
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.14.0'
+    testImplementation group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '5.0.1'
+    testImplementation group: 'org.testng', name: 'testng', version: '7.3.0'
+}
+
+test {
+    useTestNG() {}
+}
+
+bootRun {
+    main = 'example.Application'
+}
